@@ -1,0 +1,24 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    background-color: #b3b7ee;
+    width: 100%;
+    height: 78%;
+    flex: 1;
+    padding: 50px;
+    position: relative;
+
+    @media screen and (max-width: 500px) {
+      padding: 20px;
+    }
+  }
+}
