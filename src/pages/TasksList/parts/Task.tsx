@@ -1,6 +1,6 @@
 import { FC, memo, useRef } from "react";
-import { ITask } from "../../../store/useAppStore";
 import { useNavigate } from "react-router-dom";
+import { ITask } from "../../../interfaces/index.ts";
 import styles from "../TasksList.module.scss";
 
 interface ITaskProps {
