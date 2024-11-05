@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
-import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import useAppNavigation from "../../hooks/useAppNavigation";
 import styles from "./Login.module.scss";
 
 interface ICredentials {
@@ -21,14 +21,14 @@ const AddEditTask = () => {
       password: "",
     },
   });
-  const navigate = useNavigate();
+  const { navigateHome } = useAppNavigation();
   const auth = getAuth();
   const [authError, setAuthError] = useState<string>("");
 
   const onSubmit = async (data: ICredentials) => {
     try {
       await signInWithEmailAndPassword(auth, data.login, data.password);
-      navigate("/");
+      navigateHome();
     } catch (error) {
       setAuthError((error as Error).message || "General error");
       setTimeout(() => setAuthError(""), 3000);

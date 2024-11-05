@@ -1,13 +1,13 @@
 import Task from "./parts/Task";
-import { useNavigate } from "react-router-dom";
 import useAppStore from "../../store/useAppStore";
 import useTask from "../../hooks/useTask";
 import useAnimation from "../../hooks/useAnimation";
+import useAppNavigation from "../../hooks/useAppNavigation";
 import styles from "./TasksList.module.scss";
 import "animate.css";
 
 const TasksList = () => {
-  const navigate = useNavigate();
+  const { navigateForm } = useAppNavigation();
   const tasks = useAppStore((state) => state.tasks);
   const filter = useAppStore((state) => state.filter);
   const { onRemove, onComplete } = useTask();
@@ -26,7 +26,7 @@ const TasksList = () => {
           onComplete={() => onComplete({ ...task, completed: !task.completed })}
         />
       ))}
-      <div className={styles.action} onClick={() => navigate("/manage")}>
+      <div className={styles.action} onClick={() => navigateForm()}>
         +
       </div>
     </div>

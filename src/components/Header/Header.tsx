@@ -1,15 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import useAppNavigation from "../../hooks/useAppNavigation";
 import styles from "./Header.module.scss";
 
 const Header = () => {
-  const navigate = useNavigate();
+  const { navigateHome } = useAppNavigation();
   return (
     <header className={styles.headerContainer}>
-      <div
-        className={styles.title}
-        title="Back to home"
-        onClick={() => navigate("/")}
-      >
+      <div className={styles.title} title="Back to home" onClick={navigateHome}>
         Todo List
       </div>
       <div className={styles.icon}>

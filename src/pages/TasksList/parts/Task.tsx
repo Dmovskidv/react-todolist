@@ -1,6 +1,6 @@
 import { FC, memo, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { ITask } from "../../../interfaces/index.ts";
+import useAppNavigation from "../../../hooks/useAppNavigation.ts";
 import styles from "../TasksList.module.scss";
 
 interface ITaskProps {
@@ -10,7 +10,7 @@ interface ITaskProps {
 }
 
 const Task: FC<ITaskProps> = ({ task, onRemove, onComplete }) => {
-  const navigate = useNavigate();
+  const { navigateForm } = useAppNavigation();
   const elementRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -29,7 +29,7 @@ const Task: FC<ITaskProps> = ({ task, onRemove, onComplete }) => {
         <img
           alt="edit"
           src="./images/pencil.svg"
-          onClick={() => navigate(`/manage/${task.id}`)}
+          onClick={() => navigateForm(task.id)}
         />
         <img
           alt="remove"

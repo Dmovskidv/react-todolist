@@ -1,10 +1,11 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAppStore from "../store/useAppStore";
 import { ITask } from "../interfaces/index.ts";
 import { useCallback } from "react";
+import useAppNavigation from "./useAppNavigation.ts";
 
 const useTask = () => {
-  const navigate = useNavigate();
+  const { navigateHome } = useAppNavigation();
   const { taskId } = useParams();
   const tasks = useAppStore((state) => state.tasks);
   const addTask = useAppStore((state) => state.addTask);
@@ -19,9 +20,9 @@ const useTask = () => {
       } else {
         addTask({ ...data, completed: false } as ITask);
       }
-      navigate("/");
+      navigateHome();
     },
-    [addTask, editTask, navigate, taskId]
+    [addTask, editTask, taskId]
   );
 
   const onRemove = useCallback(
