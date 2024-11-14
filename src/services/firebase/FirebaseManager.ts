@@ -1,5 +1,5 @@
 import { ITask } from "../../interfaces/index.ts";
-import { app } from "./firebaseConfig";
+import { app } from "./config";
 import {
   Database,
   getDatabase,

@@ -4,6 +4,7 @@ import App from "./App";
 import { StrictMode } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login, TaskForm, TasksList } from "./pages";
+import PrivateRoute from "./hoc/PrivateRouteHOC";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/react-todolist/",
-        element: <TasksList />,
+        element: (
+          <PrivateRoute>
+            <TasksList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/react-todolist/login",
@@ -20,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/react-todolist/manage/:taskId?",
-        element: <TaskForm />,
+        element: (
+          <PrivateRoute>
+            <TaskForm />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
-import AuthHOC from "./hoc/AuthHOC";
+import AuthProvider from "./context/AuthProvider";
 import Layout from "./layout";
 
 const App = () => {
   return (
-    <AuthHOC>
+    <AuthProvider>
       <Layout>
         <Outlet />
       </Layout>
-    </AuthHOC>
+    </AuthProvider>
   );
 };
 
