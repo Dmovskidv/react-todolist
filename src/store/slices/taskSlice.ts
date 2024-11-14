@@ -1,5 +1,5 @@
 import { StateCreator } from "zustand";
-import FirebaseManager from "../../services/firebase/FirebaseManager";
+import { FirebaseTasksManager } from "../../services/firebase";
 import { ITask } from "../../interfaces/index.ts";
 
 export type TaskStore = {
@@ -20,7 +20,7 @@ const createTaskSlice: StateCreator<
   tasks: [],
   getTasks: async () => {
     try {
-      const tasks = await FirebaseManager.getTasks();
+      const tasks = await FirebaseTasksManager.getTasks();
       set({ tasks }); // You can simplify the set call
     } catch (err) {
       console.error(err);
@@ -28,7 +28,7 @@ const createTaskSlice: StateCreator<
   },
   addTask: async (task: ITask) => {
     try {
-      const createdTask = await FirebaseManager.createTask(task);
+      const createdTask = await FirebaseTasksManager.createTask(task);
       if (createdTask) {
         set((state) => ({ tasks: [...state.tasks, createdTask] }));
       }
@@ -41,7 +41,7 @@ const createTaskSlice: StateCreator<
       if (!updatedTask.id) return;
 
       const { id, ...dataToUpdate } = updatedTask;
-      await FirebaseManager.updateTask(id, dataToUpdate);
+      await FirebaseTasksManager.updateTask(id, dataToUpdate);
       set((state) => ({
         tasks: state.tasks.map((task) =>
           task.id === updatedTask.id ? updatedTask : task
@@ -53,7 +53,7 @@ const createTaskSlice: StateCreator<
   },
   removeTask: async (taskId: string) => {
     try {
-      await FirebaseManager.deleteTask(taskId);
+      await FirebaseTasksManager.deleteTask(taskId);
       set((state) => ({
         tasks: state.tasks.filter((task) => task.id !== taskId),
       }));
@@ -64,7 +64,7 @@ const createTaskSlice: StateCreator<
   completeTask: async (updatedTask: ITask) => {
     try {
       const { id, ...dataToUpdate } = updatedTask;
-      await FirebaseManager.updateTask(id, dataToUpdate);
+      await FirebaseTasksManager.updateTask(id, dataToUpdate);
       set((state) => ({
         tasks: state.tasks.map((task) => (task.id === id ? updatedTask : task)),
       }));

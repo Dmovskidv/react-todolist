@@ -1,4 +1,6 @@
+import clsx from "clsx";
 import useAppNavigation from "../../hooks/useAppNavigation";
+import { FirebaseAuthManager } from "../../services/firebase";
 import styles from "./Header.module.scss";
 
 const Header = () => {
@@ -9,12 +11,14 @@ const Header = () => {
         Todo List
       </div>
       <div className={styles.icon}>
-        <img
-          src="/react-todolist/images/calendar.svg"
-          alt="calendar icon"
-          width={100}
-          height={100}
-        />
+        <img src="/react-todolist/images/calendar.svg" alt="calendar icon" />
+      </div>
+      <div
+        className={clsx(styles.icon, styles.logout)}
+        onClick={FirebaseAuthManager.signOut}
+        title="Logout"
+      >
+        <img src="/react-todolist/images/logout.svg" alt="logout icon" />
       </div>
     </header>
   );

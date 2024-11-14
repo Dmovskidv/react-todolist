@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import useAppNavigation from "../../hooks/useAppNavigation";
+import { FirebaseAuthManager } from "../../services/firebase";
 import styles from "./Login.module.scss";
 
 interface ICredentials {
@@ -22,12 +22,14 @@ const AddEditTask = () => {
     },
   });
   const { navigateHome } = useAppNavigation();
-  const auth = getAuth();
   const [authError, setAuthError] = useState<string>("");
 
   const onSubmit = async (data: ICredentials) => {
     try {
-      await signInWithEmailAndPassword(auth, data.login, data.password);
+      await FirebaseAuthManager.signInWithEmailAndPassword(
+        data.login,
+        data.password
+      );
       navigateHome();
     } catch (error) {
       setAuthError((error as Error).message || "General error");

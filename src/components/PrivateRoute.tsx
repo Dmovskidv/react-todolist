@@ -3,7 +3,11 @@ import { useAuth } from "../context/AuthProvider";
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   const account = useAuth();
-  return account ? children : <Navigate to="/react-todolist/login" />;
+  return account?.userLoggedIn ? (
+    children
+  ) : (
+    <Navigate to="/react-todolist/login" />
+  );
 };
 
 export default PrivateRoute;

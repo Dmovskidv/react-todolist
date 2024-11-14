@@ -7,11 +7,16 @@ import styles from "./layout.module.scss";
 const Layout = ({ children }: { children: JSX.Element }) => {
   useFetchTasks();
   const { pathname } = useLocation();
+  const isFooterVisible = !(
+    pathname?.includes("manage") || pathname?.includes("login")
+  );
+  const isHeaderVisible = !pathname?.includes("login");
+
   return (
     <div className={styles.mainContainer}>
-      <Header />
+      {isHeaderVisible && <Header />}
       <main className={styles.content}>{children}</main>
-      {!pathname?.includes("manage") && <Footer />}
+      {isFooterVisible && <Footer />}
     </div>
   );
 };

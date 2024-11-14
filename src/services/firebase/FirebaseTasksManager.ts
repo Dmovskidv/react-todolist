@@ -1,5 +1,5 @@
-import { ITask } from "../../interfaces/index.ts";
-import { app } from "./config";
+import { ITask } from "../../interfaces/index.ts.ts";
+import { app } from "./config.ts";
 import {
   Database,
   getDatabase,
@@ -17,7 +17,6 @@ class FirebaseManager {
     this.db = getDatabase(app);
   }
 
-  // Fetch tasks from Realtime Database
   async getTasks(): Promise<ITask[]> {
     try {
       const dbRef = ref(this.db, "todo/tasks");

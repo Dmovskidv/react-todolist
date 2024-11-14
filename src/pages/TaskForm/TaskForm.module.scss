@@ -25,6 +25,10 @@
       &.error {
         border: 1px solid red;
       }
+
+      &:focus {
+        box-shadow: 10px 5px 5px #9395d3;
+      }
     }
 
     .btn {
@@ -38,6 +42,10 @@
 
       @media screen and (max-width: 500px) {
         width: 80%;
+      }
+
+      &:hover {
+        opacity: 0.8;
       }
     }
   }

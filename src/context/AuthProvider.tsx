@@ -42,8 +42,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     loading,
   };
 
-  console.log("contextValue", contextValue);
-
   return (
     <AuthContext.Provider value={contextValue}>
       {!loading && children}

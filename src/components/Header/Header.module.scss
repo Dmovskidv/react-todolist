@@ -7,9 +7,21 @@
   color: #ffffff;
   font-size: 24px;
   background-color: #9395d3;
+  position: relative;
 
   .title {
     font-size: 40px;
     cursor: pointer;
+  }
+
+  .logout {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }
