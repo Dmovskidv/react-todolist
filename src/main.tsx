@@ -4,15 +4,15 @@ import App from "./App";
 import { StrictMode } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login, TaskForm, TasksList } from "./pages";
-import PrivateRoute from "./hoc/PrivateRouteHOC";
+import PrivateRoute from "./components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
-    path: "/react-todolist/",
+    path: "/react-todolist",
     element: <App />,
     children: [
       {
-        path: "/react-todolist/",
+        path: "/react-todolist",
         element: (
           <PrivateRoute>
             <TasksList />

@@ -10,7 +10,7 @@ const Header = () => {
       </div>
       <div className={styles.icon}>
         <img
-          src="./images/calendar.svg"
+          src="/react-todolist/images/calendar.svg"
           alt="calendar icon"
           width={100}
           height={100}

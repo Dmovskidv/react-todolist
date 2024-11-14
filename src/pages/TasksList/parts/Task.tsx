@@ -28,17 +28,19 @@ const Task: FC<ITaskProps> = ({ task, onRemove, onComplete }) => {
       <div className={styles.actions}>
         <img
           alt="edit"
-          src="./images/pencil.svg"
+          src="/react-todolist/images/pencil.svg"
           onClick={() => navigateForm(task.id)}
         />
         <img
           alt="remove"
-          src="./images/trash.svg"
+          src="/react-todolist/images/trash.svg"
           onClick={() => onRemove(elementRef)}
         />
         <img
           alt="status"
-          src={`./images/checkCircle${task.completed ? "-completed" : ""}.svg`}
+          src={`/react-todolist/images/checkCircle${
+            task.completed ? "-completed" : ""
+          }.svg`}
           onClick={onComplete}
         />
       </div>
